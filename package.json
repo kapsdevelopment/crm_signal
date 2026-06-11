@@ -1,0 +1,24 @@
+{
+  "name": "crm_signal",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.5.1",
+  "scripts": {
+    "dev:db": "docker compose up -d postgres adminer",
+    "crm-api:build": "pnpm --filter @crm-signal/crm-api build",
+    "crm-api:dev": "pnpm --filter @crm-signal/crm-api dev",
+    "db:migrate": "pnpm --filter @crm-signal/db migrate",
+    "db:status": "pnpm --filter @crm-signal/db status",
+    "signal-api:dev": "pnpm --filter @crm-signal/signal-api dev",
+    "signal-api:build": "pnpm --filter @crm-signal/signal-api build",
+    "signal-web:build": "pnpm --filter @crm-signal/signal-web build",
+    "signal-web:dev": "pnpm --filter @crm-signal/signal-web dev",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "worker": "pnpm --filter @crm-signal/worker start"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0"
+  }
+}

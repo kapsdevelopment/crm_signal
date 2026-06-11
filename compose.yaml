@@ -1,0 +1,33 @@
+name: crm_signal
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: crm_signal_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-crm_signal}
+      POSTGRES_USER: ${POSTGRES_USER:-crm_signal}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-crm_signal_dev_password}
+    ports:
+      - "${POSTGRES_PORT:-54329}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-crm_signal} -d ${POSTGRES_DB:-crm_signal}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  adminer:
+    image: adminer:5-standalone
+    container_name: crm_signal_adminer
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8081:8080"
+
+volumes:
+  postgres_data:

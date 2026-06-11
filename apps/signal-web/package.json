@@ -1,0 +1,11 @@
+{
+  "name": "@crm-signal/signal-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-static.mjs",
+    "dev": "node scripts/dev.mjs",
+    "preview": "node scripts/dev-server.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  }
+}

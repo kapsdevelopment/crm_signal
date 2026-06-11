@@ -1,0 +1,16 @@
+{
+  "name": "@crm-signal/db",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "migrate": "node --experimental-strip-types src/migrate.ts up",
+    "status": "node --experimental-strip-types src/migrate.ts status",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.15.0"
+  }
+}
